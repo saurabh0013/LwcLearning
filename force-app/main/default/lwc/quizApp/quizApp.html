@@ -1,6 +1,7 @@
 <template>
     <lightning-card title="Quiz App in LWC">
         <div class="slds-var-m-around_medium">
+         
             <form>
                 <template for:each={myQuestions} for:item="quiz">
                     <div key={quiz.id}>
@@ -30,6 +31,7 @@
                 type="submit"
                 label="Submit"
                 title="Submit Quiz"
+                disabled={allNotSelected}
                 class="slds-var-m-around_small"
                 onclick={submitHandler}></lightning-button>
                 <lightning-button
@@ -40,6 +42,9 @@
                 class="slds-var-m-around_small"
                 onclick={resetHandler}></lightning-button>
             </form>
+            <template if:true={isSubmitted}>
+                <div class={isScoreFull}>You have socred {correctAnswers} out of {myQuestions.length}</div>
+            </template>
         </div>
     </lightning-card>
 </template>
